@@ -1,0 +1,1 @@
+hadoop jar /home/pes1ug19cs058/hadoop-3.2.2/share/hadoop/tools/lib/hadoop-streaming-3.2.2.jar -input /Task1/US_ACCIDENT_DATA_5PERCENT.json -mapper "$PWD/Task1/mapper.py" -reducer "$PWD/Task1/reducer.py" -output /Task1/output-acc > Task1/output_final.txt
