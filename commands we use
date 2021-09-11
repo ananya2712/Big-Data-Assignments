@@ -1,1 +1,8 @@
 hadoop jar /home/pes1ug19cs058/hadoop-3.2.2/share/hadoop/tools/lib/hadoop-streaming-3.2.2.jar -input /Task1/US_ACCIDENT_DATA_5PERCENT.json -mapper "$PWD/Task1/mapper.py" -reducer "$PWD/Task1/reducer.py" -output /Task1/output-acc > Task1/output_final.txt
+
+//Change and use
+arg1=$1
+a=$(pwd)
+hadoop jar "$HADOOP_HOME"/share/hadoop/tools/lib/hadoop-streaming*.jar -input /user/Assignment_1_T_2/input -output /user/Assignment_1_T_2/output -mapper "$a/BD_1448_1457_1461_1469_mapper.py '""$arg1""' " -reducer "$a"/BD_1448_1457_1461_1469_reducer.py
+hdfs dfs -cat /user/Assignment_1_T_2/output/* > op.txt
+hdfs dfs -rm -r /user/Assignment_1_T_2/output
