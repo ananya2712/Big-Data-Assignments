@@ -6,3 +6,8 @@ a=$(pwd)
 hadoop jar "$HADOOP_HOME"/share/hadoop/tools/lib/hadoop-streaming*.jar -input /user/Assignment_1_T_2/input -output /user/Assignment_1_T_2/output -mapper "$a/BD_1448_1457_1461_1469_mapper.py '""$arg1""' " -reducer "$a"/BD_1448_1457_1461_1469_reducer.py
 hdfs dfs -cat /user/Assignment_1_T_2/output/* > op.txt
 hdfs dfs -rm -r /user/Assignment_1_T_2/output
+
+FINAL COMMANDS USED 
+1. hdfs dfs -mkdir /Assignment1
+2. hdfs dfs -put accident_data.json /Assignment1
+3. mkdir output_task1 // in the Task1 directory
