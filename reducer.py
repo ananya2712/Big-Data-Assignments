@@ -9,15 +9,16 @@ output = {}
 
 for line in sys.stdin:	
 	line=line.strip()
-	temps = line.split(',')
+	#temps = line.split(',')
 	words = line.split()
 	for word in words:
 		if ':' in word and '-' not in word:
 			time = word.split(':')
-			if time[0] not in output.keys():
-				output[time[0]] = 1
+			t = int(time[0])
+			if t not in output.keys():
+				output[t] = 1
 			else:
-				output[time[0]] = output[time[0]] + 1
+				output[t]=output[t] + 1
 				
 for i in sorted(output):
     print (i, output[i])
