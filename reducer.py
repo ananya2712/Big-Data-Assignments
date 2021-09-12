@@ -9,9 +9,10 @@ output = {}
 
 for line in sys.stdin:	
 	line=line.strip()
+	temps = line.split(',')
 	words = line.split()
 	for word in words:
-		if '-' not in word:
+		if ':' in word and '-' not in word:
 			time = word.split(':')
 			if time[0] not in output.keys():
 				output[time[0]] = 1
