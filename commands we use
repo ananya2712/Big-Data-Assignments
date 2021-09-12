@@ -13,6 +13,6 @@ FINAL COMMANDS USED
 3. mkdir output_task1 // in the Task1 directory
 4. hadoop jar /home/$USER/hadoop-3.2.2/share/hadoop/tools/lib/hadoop-streaming-3.2.2.jar \
    -mapper "$PWD/mapper.py" \
-   reducer "$PWD/reducer.py 'accident_data'" \
+   -reducer "$PWD/reducer.py" \
    -input /Assignment1/accident_data.json \
-   -output /Assignment1/output-acc > output_task1/output.txt'''
+   -output /Assignment1/output-acc > output_task1/output.txt
