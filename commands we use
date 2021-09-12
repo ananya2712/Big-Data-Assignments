@@ -11,3 +11,8 @@ FINAL COMMANDS USED
 1. hdfs dfs -mkdir /Assignment1
 2. hdfs dfs -put accident_data.json /Assignment1
 3. mkdir output_task1 // in the Task1 directory
+4. hadoop jar /home/$USER/hadoop-3.2.2/share/hadoop/tools/lib/hadoop-streaming-3.2.2.jar \
+   -mapper "$PWD/mapper.py" \
+   reducer "$PWD/reducer.py 'accident_data'" \
+   -input /Assignment1/accident_data.json \
+   -output /Assignment1/output-acc > output_task1/output.txt'''
