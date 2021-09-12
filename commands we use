@@ -24,7 +24,7 @@ cat accident_data.json | python3 mapper.py | sort -k1,1 | python3 reducer.py
 
 RANDOM TRIES
 hadoop jar /home/$USER/hadoop-3.2.2/share/hadoop/tools/lib/hadoop-streaming-3.2.2.jar \
-> -mapper "$PWD/mapper.py" \
-> -reducer "$PWD/reducer.py" \
-> -input /Assignment1/accident_data.json \
-> -output /Output_Task1 > output.txt 
+-mapper "$PWD/mapper.py" \
+-reducer "$PWD/reducer.py" \
+-input /Assignment1/accident_data.json \
+-output /Output_Task1/output-acc > output.txt 
