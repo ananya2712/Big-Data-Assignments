@@ -17,10 +17,10 @@ for line in sys.stdin:
 		outputs[words[0]] = {}
 		outputs[words[0]][words[1]] = 1 
 
-for i in sorted(outputs.keys()):
+for i in outputs.keys():
 	print(i)
 	count=0
-	for j in sorted(outputs[i].keys()):
+	for j in outputs[i].keys():
 		print(j,outputs[i][j])
 		count = count + outputs[i][j]
 	print (i,count)
