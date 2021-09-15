@@ -24,7 +24,7 @@ for line in sys.stdin:
 		else:
 			payload = {"latitude": line['Start_Lat'],"longitude":line['Start_Lng']}
 			response = requests.post(url = "http://20.185.44.219:5000/", json = payload)
-			print(response.json()['state'],",",response.json()['city'])
+			print(response.json()['state'],",",response.json()['city'],",",1)
 		
 	
 
