@@ -9,18 +9,19 @@ total_count = 0
 
 for line in sys.stdin:
 	line = line.strip()
-	state , city , count = line.split(" , ")
-	city = city.strip('\n')
+	state , city , count = line.split(',')
 
-	count = int(count)
+	try:
+		count = int(count)
+	except ValueError:
+		continue
 	if current_state == None:
 		print(state)
 	if current_state == state or current_state == None:
 		total_count +=count
 		
-	
 	if current_state!= state or current_city!=city:
-		if current_city:
+		if current_city != None:
 			print(current_city,current_count)
 		
 		if current_state != state and current_state != None:
