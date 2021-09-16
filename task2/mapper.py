@@ -17,14 +17,19 @@ def euclid_dist(line):
 for line in sys.stdin:
 	line = json.loads(line)
 	
+	record_latitude = float (line['Start_Lat'])
+	record_longitude = float (line['Start_Lng'])
+	if math.isnan(record_latitude) or math.isnan(record_longitude):
+		continue
 	if line['Start_Lat'] and line['Start_Lng']:
 		dist = euclid_dist(line)
 		if dist > d:
 			continue
 		else:
-			payload = {"latitude": line['Start_Lat'],"longitude":line['Start_Lng']}
+			payload = {"latitude": record_latitude,"longitude":record_longitude}
 			response = requests.post(url = "http://20.185.44.219:5000/", json = payload)
-			print(response.json()['state'],",",response.json()['city'],",",1)
+			response = response.json()
+			print(response['state'],",",response['city'],",",1)
 		
 	
 
