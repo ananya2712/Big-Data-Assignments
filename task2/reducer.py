@@ -2,29 +2,54 @@
 
 import sys
 
-outputs = {}
-for line in sys.stdin:
-	line = line.strip()
-	words = line.split(" , ")
-	words[1] = words[1].strip('\n')
-	
-	if words[0] in outputs.keys():
-		if words[1] not in outputs[words[0]].keys() :
-			outputs[words[0]][words[1]] = 1 
-		else:
-			outputs[words[0]][words[1]] += 1
-	else:
-		outputs[words[0]] = {}
-		outputs[words[0]][words[1]] = 1 
+current_state = None
+current_city = None
+current_count = 0
+total_count = 0
 
-for i in outputs.keys():
-	print(i)
-	count=0
-	for j in outputs[i].keys():
-		print(j,outputs[i][j])
-		count = count + outputs[i][j]
-	print (i,count)
-	
+for line in sys.stdin:
+
+    try:
+        line = line.strip()
+        state, city, count = line.split(',')
+        state = state.strip()
+        city = city.strip()
+        count = count.strip()
+        count = int(count)
+    except BaseException:
+        continue
+
+    if current_state is None:
+        current_state = state
+        total_count = count
+        current_count = count
+        current_city = city
+        print(state)
+        continue
+
+    if current_state != state:
+        print(current_city, current_count)
+        print(current_state, total_count)
+        current_state = state
+        current_city = city
+        current_count = count
+        total_count = count
+        print(state)
+        continue
+
+    if current_city != city:
+        print(current_city, current_count)
+        current_city = city
+        current_count = count
+        total_count += count
+        continue
+
+    total_count += count
+    current_count += count
+
+
+print(current_city, current_count)
+print(current_state, total_count)
 	
 		
 		
