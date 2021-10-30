@@ -11,11 +11,15 @@ path = sys.argv[2]
 spark = SparkSession.builder.master("local[1]").appName("SparkByExamples.com").getOrCreate()
 
 city_file = spark.read.csv(path, inferSchema = True, header = True)
-rdd = spark.sparkContext.parallelize(city_file)
 
-if "Country" in rdd.columns:
-	rdd1 = rdd.where(f.col("Country") == country).groupBy("City").agg(f.avg("AverageTemperature")).collect()
-	rdd2 = rdd1.map(lambda x: x.asDict()).collect()
-	print(rdd2)
-	
+if "Country" in city_file.columns:
+	avg_temp = city_file.where(f.col("Country") == country).groupBy("City").agg(f.avg("AverageTemperature")).collect()
+	d = avg_temp[0].asDict()
+	avg_dict = [{r['City']: r['avg(AverageTemperature)']} for r in avg_temp]
+	# print(avg_dict)
+
+c = city_file.where(f.col("Country") == country)
+greater = c.agg(f.count(f.when(f.col("AverageTemperature")> next(item for item in avg_dict if item["City"] == f.col("City"))))).show()
+print(greater)
+		
 
